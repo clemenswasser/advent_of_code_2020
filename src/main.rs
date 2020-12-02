@@ -30,59 +30,40 @@ fn day_one() {
 
 fn day_two() {
     let file_string = std::fs::read_to_string("input/two.txt").unwrap();
-    let pairs = file_string
+    let policies_and_passwords = file_string
         .lines()
         .map(|line| {
             let (policy, password) = line.split_once(':').unwrap();
-            
-            (policy.trim(), password.trim())
+            let (range, expected_char) = policy.split_once(' ').unwrap();
+            let (a, b) = range.split_once('-').unwrap();
+
+            (
+                (a.parse::<usize>().unwrap(), b.parse::<usize>().unwrap()),
+                expected_char.chars().next().unwrap(),
+                password.trim(),
+            )
         })
         .collect::<Vec<_>>();
 
-    let valid_passwords_old_policy = pairs
+    let valid_passwords_old_policy = policies_and_passwords
         .iter()
-        .filter(|(policy, password)| {
-            let (range, char) = policy.split_once(' ').unwrap();
+        .filter(|((min, max), expected_char, password)| {
+            let char_count = password.chars().filter(|c| c == expected_char).count();
 
-            let (min, max) = {
-                let (min_s, max_s) = range.split_once('-').unwrap();
-                (
-                    min_s.parse::<usize>().unwrap(),
-                    max_s.parse::<usize>().unwrap(),
-                )
-            };
-
-            let char_count = password
-                .chars()
-                .filter(|c| *c == char.chars().next().unwrap())
-                .count();
-
-            char_count >= min && char_count <= max
+            char_count >= *min && char_count <= *max
         })
         .count();
 
     println!("valid_passwords_old_policy: {}", valid_passwords_old_policy);
 
-    let valid_passwords_new_policy = pairs
+    let valid_passwords_new_policy = policies_and_passwords
         .iter()
-        .filter(|(policy, password)| {
-            let (range, char) = {
-                let (range_s, char_s) = policy.split_once(' ').unwrap();
-                (range_s, char_s.chars().next().unwrap())
-            };
+        .filter(|((pos1, pos2), expected_char, password)| {
+            let pos1_char = password.chars().nth(pos1 - 1).unwrap();
+            let pos2_char = password.chars().nth(pos2 - 1).unwrap();
 
-            let (pos1, pos2) = {
-                let (min_s, max_s) = range.split_once('-').unwrap();
-                (
-                    min_s.parse::<usize>().unwrap(),
-                    max_s.parse::<usize>().unwrap(),
-                )
-            };
-
-            password.chars().nth(pos1 - 1).unwrap() == char
-                && password.chars().nth(pos2 - 1).unwrap() != char
-                || password.chars().nth(pos1 - 1).unwrap() != char
-                    && password.chars().nth(pos2 - 1).unwrap() == char
+            pos1_char == *expected_char && pos2_char != *expected_char
+                || pos1_char != *expected_char && pos2_char == *expected_char
         })
         .count();
 
