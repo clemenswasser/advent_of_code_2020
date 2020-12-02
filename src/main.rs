@@ -62,8 +62,7 @@ fn day_two() {
             let pos1_char = password.chars().nth(pos1 - 1).unwrap();
             let pos2_char = password.chars().nth(pos2 - 1).unwrap();
 
-            pos1_char == *expected_char && pos2_char != *expected_char
-                || pos1_char != *expected_char && pos2_char == *expected_char
+            (pos1_char == *expected_char) ^ (pos2_char == *expected_char)
         })
         .count();
 
