@@ -54,7 +54,6 @@ pub fn three() {
         .enumerate()
         .filter(|(i, line)| {
             let c_index = (i + 1) % line.len();
-            println!("{}: {}", line, c_index);
             let c = line.chars().nth(c_index).unwrap();
             c == '#'
         })
@@ -66,5 +65,8 @@ pub fn three() {
     println!("trees_7r_1d: {}", trees_7r_1d);
     println!("trees_1r_2d: {}", trees_1r_2d);
 
-    println!("result: {}", trees_1r_1d * trees_3r_1d * trees_5r_1d * trees_7r_1d * trees_1r_2d);
+    println!(
+        "result: {}",
+        trees_1r_1d * trees_3r_1d * trees_5r_1d * trees_7r_1d * trees_1r_2d
+    );
 }

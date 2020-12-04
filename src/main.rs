@@ -14,4 +14,8 @@ fn main() {
     println!("Day Three:");
     days::three::three();
     println!();
+
+    println!("Day Four:");
+    days::four::four();
+    println!();
 }
