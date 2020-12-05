@@ -66,7 +66,7 @@ pub fn three() {
     println!("trees_1r_2d: {}", trees_1r_2d);
 
     println!(
-        "result: {}",
+        "result     : {}",
         trees_1r_1d * trees_3r_1d * trees_5r_1d * trees_7r_1d * trees_1r_2d
     );
 }

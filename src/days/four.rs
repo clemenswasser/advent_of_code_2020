@@ -125,5 +125,5 @@ pub fn four() {
             byr && iyr && eyr && hgt && hcl && ecl && pid
         })
         .count();
-    println!("valid_passports_with_rules: {}", valid_passports_with_rules);
+    println!("valid_passports_with_rules   : {}", valid_passports_with_rules);
 }

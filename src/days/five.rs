@@ -25,7 +25,7 @@ pub fn five() {
         if ids.iter().find(|&&i| i == id).is_none() {
             if ids.iter().find(|&&i| i == id + 1).is_some() {
                 if ids.iter().find(|&&i| i == id - 1).is_some() {
-                    println!("my_id: {}", id)
+                    println!("my_id : {}", id)
                 }
             }
         }

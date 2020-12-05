@@ -8,7 +8,7 @@ pub fn one() {
     'outer1: for a in &numbers {
         for b in &numbers {
             if a + b == 2020 {
-                println!("a: {}, b: {}, a * b * c: {}", a, b, a * b);
+                println!("a: {} b: {}         a * b    : {}", a, b, a * b);
                 break 'outer1;
             }
         }
@@ -18,7 +18,7 @@ pub fn one() {
         for b in &numbers {
             for c in &numbers {
                 if a + b + c == 2020 {
-                    println!("a: {}, b: {}, c: {}, a * b * c: {}", a, b, c, a * b * c);
+                    println!("a: {} b: {}  c: {}  a * b * c: {}", a, b, c, a * b * c);
                     break 'outer2;
                 }
             }
