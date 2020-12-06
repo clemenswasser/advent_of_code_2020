@@ -83,24 +83,7 @@ pub fn four() {
                             hcl = data
                                 .chars()
                                 .skip(1)
-                                .filter(|c| {
-                                    *c != '0'
-                                        && *c != '1'
-                                        && *c != '2'
-                                        && *c != '3'
-                                        && *c != '4'
-                                        && *c != '5'
-                                        && *c != '6'
-                                        && *c != '7'
-                                        && *c != '8'
-                                        && *c != '9'
-                                        && *c != 'a'
-                                        && *c != 'b'
-                                        && *c != 'c'
-                                        && *c != 'd'
-                                        && *c != 'e'
-                                        && *c != 'f'
-                                })
+                                .filter(|c| !c.is_ascii_hexdigit())
                                 .count()
                                 == 0
                         }
@@ -125,5 +108,8 @@ pub fn four() {
             byr && iyr && eyr && hgt && hcl && ecl && pid
         })
         .count();
-    println!("valid_passports_with_rules   : {}", valid_passports_with_rules);
+    println!(
+        "valid_passports_with_rules   : {}",
+        valid_passports_with_rules
+    );
 }

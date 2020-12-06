@@ -19,12 +19,12 @@ pub fn five() {
     let max_id = *ids.iter().max().unwrap();
     let min_id = *ids.iter().min().unwrap();
 
-    println!("max_id: {}", ids.iter().max().unwrap());
+    println!("max_id: {}", max_id);
 
     (min_id + 1..max_id).for_each(|id| {
-        if ids.iter().find(|&&i| i == id).is_none() {
-            if ids.iter().find(|&&i| i == id + 1).is_some() {
-                if ids.iter().find(|&&i| i == id - 1).is_some() {
+        if !ids.contains(&id) {
+            if ids.contains(&(id + 1)) {
+                if ids.contains(&(id - 1)) {
                     println!("my_id : {}", id)
                 }
             }
