@@ -35,7 +35,7 @@ fn main() {
     days::eight::eight();
     println!();
 
-    println!("Day Eight:");
+    println!("Day Nine:");
     days::nine::nine();
     println!();
 }
