@@ -26,7 +26,8 @@ fn count_bag<'a>(input: &'a str, name: &str) -> usize {
             let (count, bag) = bag.split_once(' ').unwrap();
             count.parse::<usize>().unwrap() * count_bag(input, bag)
         })
-        .sum::<usize>() + 1
+        .sum::<usize>()
+        + 1
 }
 
 pub fn seven() {
@@ -37,6 +38,6 @@ pub fn seven() {
     find_bag(input.as_str(), "shiny gold bag", &mut colors);
     println!("bags: {}", colors.len());
 
-    let bag_count = count_bag(input.as_str(), "shiny gold bag")-1;
+    let bag_count = count_bag(input.as_str(), "shiny gold bag") - 1;
     println!("bag_cout: {}", bag_count);
 }
