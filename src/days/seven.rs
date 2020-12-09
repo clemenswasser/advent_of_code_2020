@@ -20,7 +20,6 @@ fn count_bag<'a>(input: &'a str, name: &str) -> usize {
     if rest == "no other bags" {
         return 1;
     };
-    println!("rest: {}", rest);
     rest.split(", ")
         .map(|bag| {
             let (count, bag) = bag.split_once(' ').unwrap();
